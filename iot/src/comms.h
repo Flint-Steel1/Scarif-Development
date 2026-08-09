@@ -108,7 +108,7 @@ void mqttConnect()
             client.subscribe(mqttTopic);
             topicBuffer = "EventLog/" + String(mqttClient);
             mqttTopic = topicBuffer.c_str();
-            sendDataToServer(mqttTopic, String(mqttClient) + " is online (Bazinga).");
+            sendDataToServer(mqttTopic, String(mqttClient) + " is online.");
         }
         else
         {

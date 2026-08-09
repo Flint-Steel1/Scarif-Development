@@ -1,3 +1,4 @@
+// EventLog (Upload, Device Events like Startups and Errors), sensorData (Upload, Telemetry data) & device Payload (Download, Gives data to the ESP32)
 // Set a unique identifier for your device before importing comms.h
 const char *mqttClient = "ESP32-Zac"; // EDIT THIS FIELD
 
@@ -37,12 +38,17 @@ void setup()
         delay(10);
     }
     delay(1000);
+
+    randomSeed(analogRead(A0));
 }
 
 void loop()
 {
     // 1. Maintain connection to the broker
     mqttConnect();
+
+    int randomNumber = random(1, 10067);
+        sendPeriodicUpdate("sensorData", String(randomNumber));
 
     // 2. Transmit periodic telemetry (if required by design specification)
     unsigned long now = millis();

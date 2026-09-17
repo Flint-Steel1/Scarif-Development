@@ -80,7 +80,7 @@ try {
                                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
 
                                     <form class="mx-1 mx-md-4" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-
+                                        login
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw form-icon"></i>
                                             <div class="form-outline flex-fill mb-0">
@@ -135,6 +135,7 @@ try {
                                                         <i class="fas fa-check-circle me-2"></i>
                                                         <div>Welcome back, ' . htmlspecialchars($user['first_name']) . '! You logged in successfully.</div>
                                                       </div>';
+                                                    header("Location: index.php");
                                                 } else {
                                                     echo '<div class="alert alert-danger d-flex align-items-center">
                                                         <i class="fas fa-exclamation-triangle me-2"></i>
@@ -163,4 +164,4 @@ try {
 
 </html>
 <?php
-ob_end_flush(); 
+ob_end_flush();

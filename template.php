@@ -1,7 +1,32 @@
 <?php require_once 'config.php';
 session_start();
-?>
 
+
+function authorisedAccess(bool $allow_unauth, bool $allow_staff, bool $allow_patients)
+{
+    if (!isset($_SESSION['email_address'])) {
+        header('Location: login.php');
+        exit;
+    }
+
+    if (!$allow_unauth && !isset($_SESSION['email_address'])) {
+        header('Location: login.php');
+        exit;
+    }
+
+    if ($allow_staff && isset($_SESSION['isStaff'])) {
+        return true;
+    }
+
+    if ($allow_patients && isset($_SESSION['isPatient'])) {
+        return true;
+    }
+
+    // If we reach this point, the user is not authorized
+    header('Location: login.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

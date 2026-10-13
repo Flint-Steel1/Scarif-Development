@@ -1,6 +1,10 @@
 <?php
+require_once 'auth.php';
+
+// Pass an array of all roles allowed to view this page
+authorise(['admin', 'staff', 'student', 'guest', 'unauth']);
 // src/index.php - System Landing Page & Navigation Hub
-session_start();
+// session_start();
 
 $isLoggedIn = isset($_SESSION['user_id']);
 $firstName  = $isLoggedIn ? ($_SESSION['first_name'] ?? 'User') : '';
